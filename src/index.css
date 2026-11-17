@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --bg-arena: #f6f8fc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --accent-gold: #d97706;
+  --accent-amber: #f59e0b;
+  --accent-cyan: #0284c7;
+  --accent-bug: #e11d48;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-arena);
+    color: #0f172a;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+
+  .font-mono-num {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
