@@ -7,7 +7,10 @@
 [![Vite](https://img.shields.io/badge/Vite-8.3-646cff?logo=vite)](https://vitejs.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-0.187-black?logo=three.js)](https://threejs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.3-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Live_Demo-Vercel-black?logo=vercel)](https://bug-la-tinh-nang.vercel.app)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
+👉 **Chơi Trực Tiếp Trên Trình Duyệt**: [https://bug-la-tinh-nang.vercel.app](https://bug-la-tinh-nang.vercel.app)
 
 ---
 
