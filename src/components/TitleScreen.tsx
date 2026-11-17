@@ -58,15 +58,15 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
   }, [codexOpen, leaderboardOpen, dossierOpen]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-20 flex flex-col justify-between overflow-y-auto text-slate-900">
-      {/* Gentle sunlit ivory edge scrim over live daylight 3D Campus */}
-      <div className="pointer-events-none fixed inset-0 bg-gradient-to-r from-[#fffdf8]/95 via-[#f8fafc]/72 to-white/15" />
-      <div className="pointer-events-none fixed inset-0 bg-gradient-to-t from-[#fffdf8]/90 via-transparent to-white/60" />
+    <div className="pointer-events-none fixed inset-0 z-20 flex flex-col justify-between overflow-y-auto text-slate-100">
+      {/* Sleek cyber edge scrim over live 3D Campus */}
+      <div className="pointer-events-none fixed inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/65 to-transparent" />
+      <div className="pointer-events-none fixed inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/40" />
 
       {/* Minimal Top Bar */}
       <header className="relative z-10 flex items-center justify-between gap-3 px-4 py-4 sm:px-8 sm:py-6">
         <div className="pointer-events-auto flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-amber-400/80 bg-white shadow-sm">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-amber-400/80 bg-slate-900 shadow-sm">
             {!crestImgFailed ? (
               <img
                 src={GAME_ASSETS.tributeSunflowerCrest}
@@ -76,15 +76,15 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
                 className="h-full w-full object-cover"
               />
             ) : (
-              <Sparkles className="h-5 w-5 text-amber-600" />
+              <Sparkles className="h-5 w-5 text-amber-400" />
             )}
           </div>
           <div>
-            <div className="font-display text-base font-extrabold tracking-tight text-slate-900 sm:text-lg">
-              Dã Quỳ Cyber-Lab 3D
+            <div className="font-display text-base font-extrabold tracking-tight text-white sm:text-lg">
+              Lời Tri Ân Trong Tuyệt Vọng 3D
             </div>
-            <div className="text-[11px] font-semibold text-amber-700">
-              CODE THE THANKS 2026 · Khoa CNTT Đại học Tây Nguyên
+            <div className="text-[11px] font-semibold text-amber-400">
+              Đội thi: Bug Là Tính Năng · Khoa CNTT ĐHTN (20/11)
             </div>
           </div>
         </div>
@@ -93,20 +93,20 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
           <button
             type="button"
             onClick={() => setDossierOpen(true)}
-            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-amber-300 bg-white/95 px-3 py-1.5 text-xs font-bold text-amber-800 shadow-sm hover:border-amber-400 hover:bg-amber-50 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-amber-500/60 bg-slate-900/85 px-3 py-1.5 text-xs font-bold text-amber-300 shadow-sm hover:border-amber-400 hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0"
           >
-            <ClipboardCheck className="h-4 w-4 text-amber-600" />
+            <ClipboardCheck className="h-4 w-4 text-amber-400" />
             <span className="hidden sm:inline">Hồ Sơ 2026</span>
           </button>
           <button
             type="button"
             onClick={() => setLeaderboardOpen(true)}
-            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-sky-300 bg-white/95 px-3 py-1.5 text-xs font-bold text-sky-900 shadow-sm hover:border-sky-400 hover:bg-sky-50 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-sky-500/60 bg-slate-900/85 px-3 py-1.5 text-xs font-bold text-sky-300 shadow-sm hover:border-sky-400 hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0"
           >
-            <Award className="h-4 w-4 text-amber-600" />
+            <Award className="h-4 w-4 text-amber-400" />
             <span>Bảng Xếp Hạng</span>
             {highScores.length > 0 && (
-              <span className="font-mono-num rounded-md bg-sky-100 px-1.5 py-0.5 text-[10px] font-extrabold text-sky-800">
+              <span className="font-mono-num rounded-md bg-sky-950/80 border border-sky-500/40 px-1.5 py-0.5 text-[10px] font-extrabold text-sky-300">
                 {highScores.length}
               </span>
             )}
@@ -115,12 +115,12 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             type="button"
             onClick={onToggleMute}
             aria-label={isMuted ? 'Bật âm thanh' : 'Tắt âm thanh'}
-            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-slate-200 bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:border-amber-400 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900/85 px-3 py-1.5 text-xs font-semibold text-slate-300 shadow-sm hover:border-amber-400 transition-colors whitespace-nowrap shrink-0"
           >
             {isMuted ? (
-              <VolumeX className="h-4 w-4 text-rose-600" />
+              <VolumeX className="h-4 w-4 text-rose-400" />
             ) : (
-              <Volume2 className="h-4 w-4 text-amber-600" />
+              <Volume2 className="h-4 w-4 text-amber-400" />
             )}
             <span className="hidden md:inline">{isMuted ? 'Tắt tiếng' : 'Âm thanh'}</span>
           </button>
@@ -129,23 +129,23 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
 
       {/* Clean Hero Content — Single Mode, Single 3D View, Pure Two Action Buttons */}
       <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 items-end px-4 pb-8 pt-10 sm:items-center sm:px-8 sm:py-8">
-        <div className="pointer-events-auto w-full max-w-xl">
-          <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold text-sky-700">
+        <div className="pointer-events-auto w-full max-w-xl rounded-3xl border border-slate-700/60 bg-slate-900/80 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
+          <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold text-sky-400">
             <span>Đấu Trường 140×140m</span>
-            <span aria-hidden="true" className="text-slate-400">·</span>
-            <span className="text-amber-700">Góc Nhìn Anime 3D Ban Ngày Dịu Mắt</span>
-            <span aria-hidden="true" className="text-slate-400">·</span>
-            <span className="text-emerald-700">Tri Ân 20/11</span>
+            <span aria-hidden="true" className="text-slate-500">·</span>
+            <span className="text-amber-400">Đồ Họa Cyberpunk Anime 3D Rõ Nét</span>
+            <span aria-hidden="true" className="text-slate-500">·</span>
+            <span className="text-emerald-400">Tri Ân 20/11</span>
           </div>
 
-          <h1 className="font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem] [text-wrap:balance]">
-            Giải Cứu Đồ Án{' '}
-            <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-sky-600 bg-clip-text text-transparent">
-              Hoa Dã Quỳ 3D
+          <h1 className="font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] [text-wrap:balance]">
+            Lời Tri Ân{' '}
+            <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-sky-400 bg-clip-text text-transparent">
+              Trong Tuyệt Vọng
             </span>
           </h1>
 
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-700 sm:text-base">
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-300 sm:text-base">
             Tự tay ngắm bắn, lướt né mưa đạn và phản kiếm hạ Boss Deadline 23:59 để viết Thiệp Tri Ân gửi Thầy Cô Khoa CNTT.
           </p>
 
@@ -163,9 +163,9 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             <button
               type="button"
               onClick={() => setCodexOpen(true)}
-              className="inline-flex min-h-[54px] items-center justify-center gap-2.5 rounded-2xl border-2 border-sky-300 bg-white/95 px-6 py-3.5 font-display text-base font-bold text-sky-900 shadow-md hover:border-sky-400 hover:bg-sky-50 active:scale-[0.98] transition-all whitespace-nowrap shrink-0"
+              className="inline-flex min-h-[54px] items-center justify-center gap-2.5 rounded-2xl border-2 border-sky-400/80 bg-slate-900/90 px-6 py-3.5 font-display text-base font-bold text-sky-300 shadow-md hover:border-sky-300 hover:bg-slate-800 active:scale-[0.98] transition-all whitespace-nowrap shrink-0"
             >
-              <BookOpen className="h-5 w-5 text-sky-600" />
+              <BookOpen className="h-5 w-5 text-sky-400" />
               <span>Bách Khoa</span>
             </button>
           </div>
@@ -173,22 +173,22 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
       </main>
 
       {/* Clean Bottom Two-Handed Controls Legend */}
-      <footer className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200/90 bg-white/90 backdrop-blur-sm px-4 py-3 text-xs text-slate-700 sm:px-8">
+      <footer className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800/90 bg-slate-950/85 backdrop-blur-sm px-4 py-3 text-xs text-slate-300 sm:px-8">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
           <span className="inline-flex items-center gap-1.5">
-            <Gamepad2 className="h-3.5 w-3.5 text-sky-600" />
+            <Gamepad2 className="h-3.5 w-3.5 text-sky-400" />
             <span>
-              <strong className="text-slate-900">Tay trái:</strong> WASD · Space Lướt · Q Xung · R Xả Nhiệt · E Bão Hoa
+              <strong className="text-white">Tay trái:</strong> WASD · Space Lướt · Q Xung · R Xả Nhiệt · E Bão Hoa
             </span>
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+            <Sparkles className="h-3.5 w-3.5 text-amber-400" />
             <span>
-              <strong className="text-slate-900">Tay phải:</strong> Chuột Trái bắn · Chuột Phải Xung (hoặc J/K/L/U/O)
+              <strong className="text-white">Tay phải:</strong> Chuột Trái bắn · Chuột Phải Xung (hoặc J/K/L/U/O)
             </span>
           </span>
         </div>
-        <span className="font-semibold text-amber-700">Mobile: 2 ngón trái/phải tối ưu sẵn</span>
+        <span className="font-semibold text-amber-400">Mobile: 2 ngón trái/phải tối ưu sẵn</span>
       </footer>
 
       {dossierOpen && (

@@ -99,36 +99,41 @@ function createSkyDomeTexture(): THREE.CanvasTexture {
   canvas.height = 512;
   const ctx = canvas.getContext('2d')!;
 
+  // Deep cyber night sky gradient
   const grad = ctx.createLinearGradient(0, 0, 0, 512);
-  grad.addColorStop(0, '#7dd3fc');
-  grad.addColorStop(0.45, '#bae6fd');
-  grad.addColorStop(0.75, '#e0f2fe');
-  grad.addColorStop(0.9, '#fef3c7');
-  grad.addColorStop(1, '#f1f5f9');
+  grad.addColorStop(0, '#020617');
+  grad.addColorStop(0.35, '#060d1f');
+  grad.addColorStop(0.65, '#0b152d');
+  grad.addColorStop(0.85, '#111827');
+  grad.addColorStop(1, '#090e1a');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 1024, 512);
 
-  const sunGlow = ctx.createRadialGradient(512, 330, 18, 512, 330, 420);
-  sunGlow.addColorStop(0, 'rgba(254, 240, 138, 0.55)');
-  sunGlow.addColorStop(0.45, 'rgba(253, 224, 71, 0.16)');
-  sunGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
-  ctx.fillStyle = sunGlow;
+  // Subtle Golden Dã Quỳ Aurora / Dawn Glow along horizon
+  const horizonGlow = ctx.createRadialGradient(512, 380, 20, 512, 380, 480);
+  horizonGlow.addColorStop(0, 'rgba(245, 158, 11, 0.28)');
+  horizonGlow.addColorStop(0.35, 'rgba(14, 165, 233, 0.12)');
+  horizonGlow.addColorStop(1, 'rgba(2, 6, 23, 0)');
+  ctx.fillStyle = horizonGlow;
   ctx.fillRect(0, 0, 1024, 512);
 
-  for (let i = 0; i < 42; i++) {
+  // Distant Cyber Constellations / Highland Stars
+  for (let i = 0; i < 90; i++) {
     const cx = (i * 197 + 43) % 1024;
-    const cy = 70 + ((i * 53) % 180);
-    const rw = 48 + (i % 5) * 18;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+    const cy = 20 + ((i * 53) % 260);
+    const r = i % 4 === 0 ? 1.6 : 0.9;
+    const isGold = i % 5 === 0;
+    ctx.fillStyle = isGold ? 'rgba(253, 224, 71, 0.85)' : 'rgba(186, 230, 253, 0.75)';
     ctx.beginPath();
-    ctx.ellipse(cx, cy, rw, 14, 0, 0, Math.PI * 2);
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  ctx.fillStyle = '#cbd5e1';
+  // Highland Mountain Silhouettes at distant base
+  ctx.fillStyle = '#070c18';
   ctx.beginPath();
   ctx.moveTo(0, 512);
-  const peaks = [395, 356, 378, 334, 372, 346, 386, 340, 368, 348, 384, 360, 395];
+  const peaks = [420, 385, 405, 365, 395, 375, 410, 368, 398, 380, 412, 388, 420];
   for (let i = 0; i < peaks.length; i++) {
     const px = (i / (peaks.length - 1)) * 1024;
     ctx.lineTo(px, peaks[i]);
@@ -149,27 +154,38 @@ function createCyberGroundTexture(maxAniso: number): THREE.CanvasTexture {
   canvas.height = size;
   const ctx = canvas.getContext('2d')!;
 
-  ctx.fillStyle = '#e8eef5';
+  // Deep dark cyber-slate base (eliminates white-out fog glare)
+  ctx.fillStyle = '#0b1120';
   ctx.fillRect(0, 0, size, size);
 
   const tile = 256;
   for (let gx = 0; gx < size; gx += tile) {
     for (let gy = 0; gy < size; gy += tile) {
+      // Sleek beveled panel with subtle cyber depth
       const g = ctx.createLinearGradient(gx, gy, gx + tile, gy + tile);
-      g.addColorStop(0, '#f8fafc');
-      g.addColorStop(0.5, '#f1f5f9');
-      g.addColorStop(1, '#e2e8f0');
+      g.addColorStop(0, '#0f172a');
+      g.addColorStop(0.5, '#0d1527');
+      g.addColorStop(1, '#080d1a');
       ctx.fillStyle = g;
-      ctx.fillRect(gx + 6, gy + 6, tile - 12, tile - 12);
+      ctx.fillRect(gx + 4, gy + 4, tile - 8, tile - 8);
 
-      ctx.strokeStyle = 'rgba(2, 132, 199, 0.14)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(gx + 20, gy + 20, tile - 40, tile - 40);
+      // Inner tech groove accent
+      ctx.strokeStyle = 'rgba(14, 165, 233, 0.18)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(gx + 16, gy + 16, tile - 32, tile - 32);
+
+      // Cyber micro-circuit corner marks
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.35)';
+      ctx.fillRect(gx + 18, gy + 18, 6, 2);
+      ctx.fillRect(gx + 18, gy + 18, 2, 6);
+      ctx.fillRect(gx + tile - 24, gy + 18, 6, 2);
+      ctx.fillRect(gx + tile - 20, gy + 18, 2, 6);
     }
   }
 
-  ctx.strokeStyle = 'rgba(14, 165, 233, 0.24)';
-  ctx.lineWidth = 3;
+  // Major neon grid lines (Cyan & Amber)
+  ctx.strokeStyle = 'rgba(6, 182, 212, 0.35)';
+  ctx.lineWidth = 2.5;
   for (let i = 0; i <= size; i += tile) {
     ctx.beginPath();
     ctx.moveTo(i, 0);
@@ -182,8 +198,9 @@ function createCyberGroundTexture(maxAniso: number): THREE.CanvasTexture {
     ctx.stroke();
   }
 
-  ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
-  ctx.lineWidth = 1.5;
+  // Sub-grid lines (Subtle slate)
+  ctx.strokeStyle = 'rgba(30, 41, 59, 0.6)';
+  ctx.lineWidth = 1.2;
   for (let i = 128; i < size; i += tile) {
     ctx.beginPath();
     ctx.moveTo(i, 0);
@@ -195,16 +212,22 @@ function createCyberGroundTexture(maxAniso: number): THREE.CanvasTexture {
     ctx.stroke();
   }
 
+  // Golden Dã Quỳ junction nodes at intersections
   for (let x = 0; x <= size; x += tile) {
     for (let y = 0; y <= size; y += tile) {
       ctx.beginPath();
       ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(217, 119, 6, 0.42)';
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(x + tile / 2, y + tile / 2, 3.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(2, 132, 199, 0.28)';
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(251, 191, 36, 0.85)';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(x + tile / 2, y + tile / 2, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(6, 182, 212, 0.7)';
       ctx.fill();
     }
   }
@@ -387,8 +410,9 @@ export function createArenaEnvironment(
   targetLockReticle: THREE.Group;
   obstacles: ArenaObstacle[];
 } {
-  scene.background = new THREE.Color(0xdbeafe);
-  scene.fog = new THREE.FogExp2(0xe2eefc, 0.0036);
+  scene.background = new THREE.Color(0x0a0f1d);
+  // Linear fog: starts at 55 units, fades to 170. Zero fog in combat area!
+  scene.fog = new THREE.Fog(0x0a0f1d, 55, 170);
 
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
@@ -401,11 +425,11 @@ export function createArenaEnvironment(
   );
   scene.add(skyDome);
 
-  // Bright soothing Daylight 3-point lighting with crisp shadows and zero eye strain
-  const hemi = new THREE.HemisphereLight(0xf0f9ff, 0xd6d3d1, 1.05);
+  // High-contrast Cyberpunk 3-point lighting
+  const hemi = new THREE.HemisphereLight(0x38bdf8, 0x1e1b4b, 0.85);
   scene.add(hemi);
 
-  const keyLight = new THREE.DirectionalLight(0xfffbeb, 1.38);
+  const keyLight = new THREE.DirectionalLight(0xfffbeb, 1.45);
   keyLight.position.set(34, 58, 30);
   if (!isSoftwareGl) {
     keyLight.castShadow = true;
@@ -422,33 +446,33 @@ export function createArenaEnvironment(
   }
   scene.add(keyLight);
 
-  const rimLight = new THREE.DirectionalLight(0xfde68a, 0.45);
+  const rimLight = new THREE.DirectionalLight(0xf59e0b, 0.75);
   rimLight.position.set(-40, 26, -38);
   scene.add(rimLight);
 
-  const fillLight = new THREE.DirectionalLight(0xbae6fd, 0.52);
+  const fillLight = new THREE.DirectionalLight(0x0284c7, 0.45);
   fillLight.position.set(-28, 22, 36);
   scene.add(fillLight);
 
   const maxAniso = renderer.capabilities.getMaxAnisotropy();
 
-  // Vast 140x140 Daylight Cyber Courtyard
+  // Vast 140x140 Cyberpunk Neon Courtyard
   const groundTex = createCyberGroundTexture(maxAniso);
   const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(380, 380),
-    new THREE.MeshStandardMaterial({ map: groundTex, roughness: 0.85, metalness: 0.08 }),
+    new THREE.MeshStandardMaterial({ map: groundTex, roughness: 0.65, metalness: 0.15 }),
   );
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = !isSoftwareGl;
   scene.add(ground);
 
-  // Raised Daylight Arena Platform Border Frame
+  // Raised Cyber Arena Platform Border Frame
   const wallMat = new THREE.MeshStandardMaterial({
-    color: 0xcbd5e1,
-    metalness: 0.25,
-    roughness: 0.55,
+    color: 0x1e293b,
+    metalness: 0.45,
+    roughness: 0.4,
   });
-  const neonEdgeMat = new THREE.MeshBasicMaterial({ color: 0x0284c7 });
+  const neonEdgeMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
   const borderSides = [
     { x: 0, z: -ARENA_HALF_SIZE - 0.8, w: ARENA_HALF_SIZE * 2 + 2.4, d: 1.5 },
     { x: 0, z: ARENA_HALF_SIZE + 0.8, w: ARENA_HALF_SIZE * 2 + 2.4, d: 1.5 },
@@ -472,11 +496,11 @@ export function createArenaEnvironment(
   const stageDais = new THREE.Mesh(
     new THREE.CylinderGeometry(7.2, 7.9, 0.12, 8),
     new THREE.MeshStandardMaterial({
-      color: 0xf8fafc,
-      emissive: 0xbae6fd,
-      emissiveIntensity: 0.12,
-      metalness: 0.18,
-      roughness: 0.55,
+      color: 0x111827,
+      emissive: 0x0369a1,
+      emissiveIntensity: 0.24,
+      metalness: 0.55,
+      roughness: 0.42,
     }),
   );
   stageDais.position.y = 0.05;
@@ -488,9 +512,9 @@ export function createArenaEnvironment(
   const ring1 = new THREE.Mesh(
     new THREE.RingGeometry(7.3, 7.65, 48),
     new THREE.MeshBasicMaterial({
-      color: 0x0891b2,
+      color: 0x06b6d4,
       transparent: true,
-      opacity: 0.42,
+      opacity: 0.65,
       side: THREE.DoubleSide,
       depthWrite: false,
     }),
@@ -501,9 +525,9 @@ export function createArenaEnvironment(
   const ring2 = new THREE.Mesh(
     new THREE.RingGeometry(4.2, 4.48, 8),
     new THREE.MeshBasicMaterial({
-      color: 0xeab308,
+      color: 0xf59e0b,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.72,
       side: THREE.DoubleSide,
       depthWrite: false,
     }),
@@ -518,7 +542,7 @@ export function createArenaEnvironment(
     new THREE.MeshBasicMaterial({
       color: 0x06b6d4,
       transparent: true,
-      opacity: 0.2,
+      opacity: 0.38,
       side: THREE.DoubleSide,
       depthWrite: false,
     }),
@@ -530,9 +554,9 @@ export function createArenaEnvironment(
   const perimeterRing = new THREE.Mesh(
     new THREE.RingGeometry(ARENA_HALF_SIZE * 1.18, ARENA_HALF_SIZE * 1.2, 72),
     new THREE.MeshBasicMaterial({
-      color: 0xeab308,
+      color: 0xf59e0b,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.45,
       side: THREE.DoubleSide,
       depthWrite: false,
     }),
@@ -544,9 +568,9 @@ export function createArenaEnvironment(
   // Diagonal Golden Conduit Lanes connecting Center Stage to the 4 Holo-Tables (±28, ±28)
   const laneGeo = new THREE.PlaneGeometry(0.42, 34);
   const laneMat = new THREE.MeshBasicMaterial({
-    color: 0xeab308,
+    color: 0xf59e0b,
     transparent: true,
-    opacity: 0.14,
+    opacity: 0.28,
     side: THREE.DoubleSide,
     depthWrite: false,
   });

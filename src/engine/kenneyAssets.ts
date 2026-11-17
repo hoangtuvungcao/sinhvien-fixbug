@@ -140,7 +140,7 @@ function getAnimeOutlineMaterial(colorHex: number, localThickness: number): THRE
     emissive: colorHex,
     emissiveIntensity: 1.0,
     side: THREE.BackSide,
-    fog: true,
+    fog: false,
   });
   mat.userData.sharedKenneyMat = true;
   mat.userData.isAnimeOutline = true;

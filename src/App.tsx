@@ -161,7 +161,7 @@ export default function App() {
     const autoEntry: HighScoreRecord = {
       id: newId,
       playerName: 'Sinh viên CNTT ĐHTN',
-      teamCode: 'Đ01',
+      teamCode: 'Bug Là Tính Năng',
       rank: summary.rank,
       score: summary.score,
       kills: summary.kills,
@@ -184,7 +184,7 @@ export default function App() {
       const entry: HighScoreRecord = {
         id: recordId,
         playerName,
-        teamCode: teamCode || 'Đ01',
+        teamCode: teamCode || 'Bug Là Tính Năng',
         rank: matchSummary.rank,
         score: matchSummary.score,
         kills: matchSummary.kills,
@@ -206,7 +206,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#f6f8fc]">
+    <div className="relative h-screen w-screen overflow-hidden bg-[#0a0f1d]">
       <GameCanvas3D
         screenState={screenState}
         cameraZoom={cameraZoom}

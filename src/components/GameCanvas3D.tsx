@@ -604,7 +604,7 @@ export const GameCanvas3D: React.FC<GameCanvas3DProps> = ({
 
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.96;
+    renderer.toneMappingExposure = 1.0;
     renderer.setPixelRatio(
       isSoftwareGl ? 1 : Math.min(window.devicePixelRatio || 1, isMobilePerf ? 1.35 : 1.5),
     );
@@ -691,13 +691,13 @@ export const GameCanvas3D: React.FC<GameCanvas3DProps> = ({
     if (!isSoftwareGl) {
       composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
-      // Half-resolution gentle daylight anti-glare bloom
+      // Crisp Cyberpunk bloom for neon projectiles & highlights
       const bloomScale = 0.5;
       bloomPass = new UnrealBloomPass(
         new THREE.Vector2(Math.floor(initW * bloomScale), Math.floor(initH * bloomScale)),
-        0.14,
-        0.22,
-        0.94,
+        0.38,
+        0.28,
+        0.78,
       );
       composer.addPass(bloomPass);
       composer.addPass(new OutputPass());

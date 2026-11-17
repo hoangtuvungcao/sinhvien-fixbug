@@ -64,7 +64,7 @@ export const TributeStudioModal: React.FC<TributeStudioModalProps> = ({
   onBackToTitle,
 }) => {
   const [activeTab, setActiveTab] = useState<StudioTab>('card');
-  const [teamCode, setTeamCode] = useState('Đ01');
+  const [teamCode, setTeamCode] = useState('Bug Là Tính Năng');
   const [studentName, setStudentName] = useState('Sinh viên CNTT ĐHTN');
   const [teacherName, setTeacherName] = useState('Quý Thầy Cô Khoa CNTT');
   const [message, setMessage] = useState(PRESET_TRIBUTE_MESSAGES[0]);
@@ -159,7 +159,7 @@ export const TributeStudioModal: React.FC<TributeStudioModalProps> = ({
         ctx.stroke();
       }
 
-      const cleanTeam = teamCode.trim() || 'Đ01';
+      const cleanTeam = teamCode.trim() || 'Bug Là Tính Năng';
       const cleanStudent = studentName.trim() || 'Sinh viên CNTT ĐHTN';
       const cleanTeacher = teacherName.trim() || 'Quý Thầy Cô Khoa CNTT';
       const cleanMsg = message.trim() || PRESET_TRIBUTE_MESSAGES[0];
@@ -299,7 +299,7 @@ export const TributeStudioModal: React.FC<TributeStudioModalProps> = ({
       ctx.fillStyle = '#64748b';
       ctx.font = '600 13px "JetBrains Mono", monospace';
       ctx.fillText(
-        `Dã Quỳ Cyber-Lab 3D · Chung kết CODE THE THANKS 2026 (19/11/2026) · Mã đội ${cleanTeam}`,
+        `Lời Tri Ân Trong Tuyệt Vọng 3D · Đội ${cleanTeam} · Khoa CNTT ĐHTN (20/11)`,
         72,
         754,
       );
